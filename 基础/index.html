@@ -34,9 +34,23 @@
 
   <script type="text/babel">
     class MyComponent extends React.Component {
+      constructor (porps) {
+        super(porps)
+        this.state = { isHot: true }
+        this.changeWeather = this.changeWeather.bind(this)
+      }
       render () {
         console.log(this)
-        return <h1>我是一个组件</h1>
+        return (
+          <div>
+            <h1>今天天气{this.state.isHot ? '炎热' : '凉爽'}</h1>
+            <button onClick={this.changeWeather} >切换</button>
+          </div>
+        )
+      }
+      changeWeather () {
+        console.log(this.state.isHot)
+        this.state.isHot = !this.state.isHot
       }
     }
 
