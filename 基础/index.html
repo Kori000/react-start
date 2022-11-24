@@ -33,18 +33,18 @@
   ></script>
 
   <script type="text/babel">
-    const title = '前端js框架列表'
-    const arr = ['React', 'Angular', 'Vue', 'Svelte']
-
-    function Demo () {
-      return <h1>{title}</h1>
+    class MyComponent extends React.Component {
+      render () {
+        console.log(this)
+        return <h1>我是一个组件</h1>
+      }
     }
 
     // const VDOM = (
 
     // )
 
-    ReactDOM.render(<Demo />, document.getElementById('test'))
+    ReactDOM.render(<MyComponent />, document.getElementById('test'))
 
   </script>
 
