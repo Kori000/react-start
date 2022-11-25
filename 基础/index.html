@@ -33,23 +33,26 @@
   ></script>
 
   <script type="text/babel">
-    class MyComponent extends React.Component {
-      state = { isHot: true, title: '好吃' }
-
-      changeHot = () => {
-        const { isHot } = this.state
-        this.setState({ isHot: !isHot })
+    class Person extends React.Component {
+      state = {
+        name: ['Tom', 'Jack'],
+        gender: ['女', '男'],
+        age: [18, 17]
       }
-      render () {
-        const { isHot, title } = this.state
 
+      render () {
+        const { name, gender, age } = this.props
         return (
-          <h1 onClick={this.changeHot} >我觉得 {isHot ? '🍣' : '🍔'} {title}</h1>
+          <ul>
+            <li>姓名:{name}</li>
+            <li>性别:{gender}</li>
+            <li>年龄:{age}</li>
+          </ul>
         )
       }
     }
 
-    ReactDOM.render(<MyComponent />, document.getElementById('test'))
+    ReactDOM.render(<Person name='Tom' gender='女' age='17' />, document.getElementById('test'))
   </script>
 
 </body>
