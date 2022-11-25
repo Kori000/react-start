@@ -34,32 +34,22 @@
 
   <script type="text/babel">
     class MyComponent extends React.Component {
-      constructor (porps) {
-        super(porps)
-        this.state = { isHot: true }
-        this.changeWeather = this.changeWeather.bind(this)
+      state = { isHot: true, title: '好吃' }
+
+      changeHot = () => {
+        const { isHot } = this.state
+        this.setState({ isHot: !isHot })
       }
       render () {
-        console.log(this)
+        const { isHot, title } = this.state
+
         return (
-          <div>
-            <h1>今天天气{this.state.isHot ? '炎热' : '凉爽'}</h1>
-            <button onClick={this.changeWeather} >切换</button>
-          </div>
+          <h1 onClick={this.changeHot} >我觉得 {isHot ? '🍣' : '🍔'} {title}</h1>
         )
-      }
-      changeWeather () {
-        console.log(this.state.isHot)
-        this.state.isHot = !this.state.isHot
       }
     }
 
-    // const VDOM = (
-
-    // )
-
     ReactDOM.render(<MyComponent />, document.getElementById('test'))
-
   </script>
 
 </body>
