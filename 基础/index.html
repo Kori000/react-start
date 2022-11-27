@@ -43,49 +43,39 @@
   <script type="text/babel">
     class Demo extends React.Component {
       state = {
-        value: '',
-        isHot: ''
+        username: '',
+        password: ''
       }
-      changeValue = () => {
-        console.log(this.myRef1.current.value)
+
+      login = () => {
+        const { username, password } = this.state
+        console.log(username, password)
       }
-      showValue = () => {
-        alert(this.myRef1.current.value)
-      }
-      outOfFocus = () => {
-        if (this.myRef2.current.value.trim()) {
-          alert(this.myRef2.current.value)
-        }
-      }
-      changeWeather = () => {
-        const { isHot } = this.state
+      setUsername = (e) => {
         this.setState({
-          isHot: !isHot
+          username: e.target.value
+        })
+      }
+      setPassword = (e) => {
+        this.setState({
+          password: e.target.value
         })
       }
 
-      myRef1 = React.createRef()
-      myRef2 = React.createRef()
-
       render () {
-        // console.log(this)
-        const { value, isHot } = this.state
         return (
           <div>
-            <h1>今天天气很{isHot ? '炎热' : '凉爽'}</h1>
-            <input ref={this.myRef1} onChange={this.changeValue} type="text" />
-            <button onClick={this.showValue}>提示</button>
-            <input ref={this.myRef2} onBlur={this.outOfFocus} type="text" placeholder='请输入内容' />
-            <button onClick={this.changeWeather}>切换天气</button>
-          </div >
+            <input onChange={this.setUsername} type="username" />
+            <input onChange={this.setPassword} type="password" />
+            <br />
+            <button onClick={this.login} >login in</button>
+          </div>
         )
-
       }
     }
 
+
     ReactDOM.render(<Demo />, document.getElementById('test1'))
-
-
   </script>
 
 </body>
