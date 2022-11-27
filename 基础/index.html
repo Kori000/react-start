@@ -43,29 +43,37 @@
   <script type="text/babel">
     class Demo extends React.Component {
       state = {
-        value: ''
+        value: '',
+        isHot: ''
       }
       changeValue = () => {
         console.log(this.inp1.value)
       }
       showValue = () => {
-        console.log(this)
+        console.log('@')
       }
       outOfFocus = () => {
         if (this.inp2.value.trim()) {
           alert(this.inp2.value)
         }
-
+      }
+      changeWeather = () => {
+        const { isHot } = this.state
+        this.setState({
+          isHot: !isHot
+        })
       }
       render () {
-        console.log(this)
-        const { value } = this.state
+        // console.log(this)
+        const { value, isHot } = this.state
         return (
           <div>
-            <input ref={c => this.inp1 = c} onChange={this.changeValue} type="text" />
+            <h1>今天天气很{isHot ? '炎热' : '凉爽'}</h1>
+            <input ref={c => { this.inp1 = c; console.log('@', c) }} onChange={this.changeValue} type="text" />
             <button onClick={this.showValue}>提示</button>
             <input ref={c => this.inp2 = c} onBlur={this.outOfFocus} type="text" placeholder='请输入内容' />
-          </div>
+            <button onClick={this.changeWeather}>切换天气</button>
+          </div >
         )
 
       }
