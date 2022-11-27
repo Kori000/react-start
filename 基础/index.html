@@ -51,19 +51,18 @@
         const { username, password } = this.state
         console.log('username :' + username, 'password :' + password)
       }
-      handlerLogin = (dataType) => {
-        return (e) => {
-          this.setState({
-            [dataType]: e.target.value
-          })
-        }
+      handlerLogin = (dataType, value) => {
+        this.setState({
+          [dataType]: value
+        })
+        console.log(this.state)
       }
 
       render () {
         return (
           <div>
-            <input onChange={this.handlerLogin('username')} type="username" />
-            <input onChange={this.handlerLogin('password')} type="password" />
+            <input onChange={e => this.handlerLogin('username', e.target.value)} type="username" />
+            <input onChange={e => this.handlerLogin('password', e.target.value)} type="password" />
             <br />
             <button onClick={this.login} >login in</button>
           </div>
