@@ -41,50 +41,39 @@
   </div>
 
   <script type="text/babel">
-    class Person extends React.Component {
+    class Demo extends React.Component {
       state = {
-        name: ['Tom', 'Jack'],
-        gender: ['女', '男'],
-        age: [18, 17]
+        value: ''
+      }
+      changeValue = () => {
+        console.log(this.refs.inp1.value)
+      }
+      showValue = () => {
+        alert(this.refs.inp1.value)
+        debugger
+      }
+      outOfFocus = () => {
+        if (this.refs.inp2.value.trim()) {
+          alert(this.refs.inp2.value)
+        }
 
       }
-
-      // 静态
-      static propTypes = {
-        name: PropTypes.string.isRequired,
-        age: PropTypes.number
-      }
-
-      // 静态
-      static defaultProps = {
-        gender: '其他'
-      }
-
       render () {
-        const { name, gender, age, speak } = this.props
         console.log(this)
+        const { value } = this.state
         return (
-          <ul>
-            <li onClick={speak}>姓名:{name}</li>
-            <li>性别:{gender}</li>
-            <li>年龄:{age + 1}</li>
-          </ul>
+          <div>
+            <input ref='inp1' onChange={this.changeValue} type="text" />
+            <button onClick={this.showValue}>提示</button>
+            <input ref='inp2' onBlur={this.outOfFocus} type="text" placeholder='请输入内容' />
+          </div>
         )
+
       }
     }
-    // 普通prop
-    ReactDOM.render(<Person name='Kori' gender='男' age={25} speak={selfIntroduction} />, document.getElementById('test1'))
-    ReactDOM.render(<Person name='Liz' gender='女' age={30} speak={() => { console.log('777') }} />, document.getElementById('test2'))
 
-    // 批量 prop
-    const p = { name: 'Tom', gender: '男', age: 20 }
-    ReactDOM.render(<Person {...p} />, document.getElementById('test3'))
+    ReactDOM.render(<Demo />, document.getElementById('test1'))
 
-
-    // 定义一个方法
-    function selfIntroduction () {
-      console.log('大家好 --- ')
-    }
 
   </script>
 
