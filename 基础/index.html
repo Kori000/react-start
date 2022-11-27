@@ -47,24 +47,43 @@
       }
 
       render () {
-        const { name, gender, age } = this.props
+        const { name, gender, age, speak } = this.props
         console.log(this)
         return (
           <ul>
-            <li>姓名:{name}</li>
+            <li onClick={speak}>姓名:{name}</li>
             <li>性别:{gender}</li>
             <li>年龄:{age + 1}</li>
           </ul>
         )
       }
     }
+    // prop 类型限制
+    // string | number -- 类型
+    // isRequired  -- 必须填
+
+    Person.propTypes = {
+      name: PropTypes.string.isRequired,
+      age: PropTypes.number
+    }
+    // prop 默认值
+    Person.defaultProps = {
+      gender: '其他'
+    }
     // 普通prop
-    ReactDOM.render(<Person name='Kori' gender='男' age={25} />, document.getElementById('test1'))
-    ReactDOM.render(<Person name='Jack' gender='女' age={30} />, document.getElementById('test2'))
+    ReactDOM.render(<Person name='Kori' gender='男' age={25} speak={selfIntroduction} />, document.getElementById('test1'))
+    ReactDOM.render(<Person name='Liz' gender='女' age={30} speak={() => { console.log('777') }} />, document.getElementById('test2'))
 
     // 批量 prop
     const p = { name: 'Tom', gender: '男', age: 20 }
     ReactDOM.render(<Person {...p} />, document.getElementById('test3'))
+
+
+    // 定义一个方法
+    function selfIntroduction () {
+      console.log('大家好 --- ')
+    }
+
   </script>
 
 </body>
