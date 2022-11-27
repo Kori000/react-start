@@ -47,14 +47,14 @@
         isHot: ''
       }
       changeValue = () => {
-        console.log(this.inp1.value)
+        console.log(this.myRef1.current.value)
       }
       showValue = () => {
-        console.log('@')
+        alert(this.myRef1.current.value)
       }
       outOfFocus = () => {
-        if (this.inp2.value.trim()) {
-          alert(this.inp2.value)
+        if (this.myRef2.current.value.trim()) {
+          alert(this.myRef2.current.value)
         }
       }
       changeWeather = () => {
@@ -63,15 +63,19 @@
           isHot: !isHot
         })
       }
+
+      myRef1 = React.createRef()
+      myRef2 = React.createRef()
+
       render () {
         // console.log(this)
         const { value, isHot } = this.state
         return (
           <div>
             <h1>今天天气很{isHot ? '炎热' : '凉爽'}</h1>
-            <input ref={c => { this.inp1 = c; console.log('@', c) }} onChange={this.changeValue} type="text" />
+            <input ref={this.myRef1} onChange={this.changeValue} type="text" />
             <button onClick={this.showValue}>提示</button>
-            <input ref={c => this.inp2 = c} onBlur={this.outOfFocus} type="text" placeholder='请输入内容' />
+            <input ref={this.myRef2} onBlur={this.outOfFocus} type="text" placeholder='请输入内容' />
             <button onClick={this.changeWeather}>切换天气</button>
           </div >
         )
