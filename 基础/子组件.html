@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div id="test1"></div>
+  <div id="test2"></div>
+  <div>
+    <script
+      type="text/javascript"
+      src="./oldDepend/react.development.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./oldDepend/react-dom.development.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./oldDepend/babel.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./oldDepend/prop-types.js"
+    ></script>
+  </div>
+
+  <script type="text/babel">
+    class DemoA extends React.Component {
+      state = {
+        car: '奔驰'
+      }
+      chnageCar = () => {
+        this.setState({
+          car: this.state.car === '马自达' ? '奔驰' : '马自达'
+        })
+      }
+      render () {
+        return (
+          <div>
+            <h1>我是 A 组件</h1>
+            <button onClick={this.chnageCar} >换车</button>
+            <DemoB carName={this.state.car} />
+          </div>
+        )
+      }
+    }
+
+    class DemoB extends React.Component {
+      render () {
+        return (
+          <div>
+            <h1>我是 B 组件: {this.props.carName}</h1>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<DemoA />, document.getElementById('test1'))
+  </script>
+
+</body>
+<script>
+
+</script>
+
+</html>
