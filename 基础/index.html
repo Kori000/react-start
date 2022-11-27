@@ -64,6 +64,12 @@
       death = () => {
         ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
       }
+
+      // 强制更新 不管阀门(shouldComponentUpdate)是否开启
+      force = () => {
+        this.forceUpdate()
+      }
+
       // 挂载前
       componentWillMount () {
         console.log('componentWillMount-life')
@@ -96,7 +102,8 @@
           <div>
             <h1>当前求和为 {this.state.num}</h1>
             <button onClick={this.addNum} >加 1</button>
-            <button onClick={this.death} > 卸载</button>
+            <button onClick={this.death} >卸载</button>
+            <button onClick={this.force} >强制更新</button>
           </div>
         )
       }
