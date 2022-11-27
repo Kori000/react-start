@@ -46,15 +46,14 @@
         value: ''
       }
       changeValue = () => {
-        console.log(this.refs.inp1.value)
+        console.log(this.inp1.value)
       }
       showValue = () => {
-        alert(this.refs.inp1.value)
-        debugger
+        console.log(this)
       }
       outOfFocus = () => {
-        if (this.refs.inp2.value.trim()) {
-          alert(this.refs.inp2.value)
+        if (this.inp2.value.trim()) {
+          alert(this.inp2.value)
         }
 
       }
@@ -63,9 +62,9 @@
         const { value } = this.state
         return (
           <div>
-            <input ref='inp1' onChange={this.changeValue} type="text" />
+            <input ref={c => this.inp1 = c} onChange={this.changeValue} type="text" />
             <button onClick={this.showValue}>提示</button>
-            <input ref='inp2' onBlur={this.outOfFocus} type="text" placeholder='请输入内容' />
+            <input ref={c => this.inp2 = c} onBlur={this.outOfFocus} type="text" placeholder='请输入内容' />
           </div>
         )
 
