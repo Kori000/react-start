@@ -13,12 +13,21 @@ class App extends Component {
     ]
   }
 
-  render() {
+  // 增加 item
+  addItem = (newItem) => {
+    const { todos } = this.state
+    let newTodos = [newItem, ...todos]
+    this.setState({
+      todos: newTodos
+    })
+  }
+
+  render () {
     const { todos } = this.state
     return (
       <div className="todo-container">
         <div className="todo-wrap">
-          <Header></Header>
+          <Header addItem={this.addItem} ></Header>
           <List todos={todos}></List>
           <Footer></Footer>
         </div>
