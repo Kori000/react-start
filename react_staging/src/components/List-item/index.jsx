@@ -7,7 +7,7 @@ export default class Item extends Component {
     mouse: false
   }
 
-
+  // 移动到 item 中高亮
   mouseHandle = (flag) => {
     return () => {
       this.setState({
@@ -16,33 +16,35 @@ export default class Item extends Component {
     }
   }
 
-  checkChange = (id) => {
-    return (e) => {
-      const { updateDone } = this.props
-      updateDone(id, e.target.checked)
-    }
-  }
-
+  // 删除
   removeTodo = (id) => {
     return () => {
       this.props.removeItem(id)
     }
   }
 
+  // checked 状态切换
+  changeChecked = (id) => {
+    return (e) => {
+      this.props.updateItem(id, e.target.checked)
+    }
+  }
+
   render () {
-    const { name, done, id } = this.props
+    const { name, id, done } = this.props
     const { mouse } = this.state
+
     return (
       <li
         onMouseEnter={this.mouseHandle(true)}
         onMouseLeave={this.mouseHandle(false)}
-        style={{ background: mouse ? '#ddd' : '#fff' }}
+        style={{ backgroundColor: mouse ? '#ddd' : '#fff' }}
       >
         <label>
-          <input type="checkbox" defaultChecked={done} onChange={this.checkChange(id)} />
+          <input type="checkbox" checked={done} onChange={this.changeChecked(id)} />
           <span>{name}</span>
         </label>
-        <button className="btn btn-danger" onClick={this.removeTodo(id)} style={{ display: mouse ? 'block' : 'none' }}>
+        <button onClick={this.removeTodo(id)} className="btn btn-danger" style={{ display: mouse ? 'block' : 'none' }}>
           删除
         </button>
       </li >

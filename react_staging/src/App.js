@@ -13,19 +13,28 @@ class App extends Component {
     ]
   }
 
-  // 增加 item
-  addItem = (newItem) => {
-    const { todos } = this.state
-    let newTodos = [newItem, ...todos]
+
+  // 增
+  addItem = (newObj) => {
+    const newTodos = [newObj, ...this.state.todos]
     this.setState({
       todos: newTodos
     })
   }
 
-  // 更改状态
-  updateDone = (id, done) => {
-    const { todos } = this.state
-    const newTodos = todos.map(i => {
+  // 删
+  removeItem = (id) => {
+    const newTodos = this.state.todos.filter(i => {
+      return i.id !== id
+    })
+    this.setState({
+      todos: newTodos
+    })
+  }
+
+  // 改变单个状态
+  updateItem = (id, done) => {
+    const newTodos = this.state.todos.map(i => {
       if (i.id === id) return { ...i, done }
       else return i
     })
@@ -34,16 +43,26 @@ class App extends Component {
     })
   }
 
-  // 删除
-  removeItem = (id) => {
-    const { todos } = this.state
-    const newTodos = todos.filter(i => {
-      return i.id !== id
+  // 改变所有状态
+  updataAll = (done) => {
+    const newTodos = this.state.todos.map(i => {
+      return { ...i, done }
     })
     this.setState({
       todos: newTodos
     })
   }
+
+  // 删除所有完成(true)状态
+  removeAllTrue = () => {
+    const newTodos = this.state.todos.filter(i => {
+      return i.done !== true
+    })
+    this.setState({
+      todos: newTodos
+    })
+  }
+
 
   render () {
     const { todos } = this.state
@@ -51,8 +70,8 @@ class App extends Component {
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addItem={this.addItem} ></Header>
-          <List todos={todos} updateDone={this.updateDone} removeItem={this.removeItem} ></List>
-          <Footer></Footer>
+          <List todos={todos} removeItem={this.removeItem} updateItem={this.updateItem} ></List>
+          <Footer todos={todos} updataAll={this.updataAll} removeAllTrue={this.removeAllTrue} ></Footer>
         </div>
       </div>
     )
