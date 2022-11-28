@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import './index.css';
+import PropTypes from 'prop-types'
 import { nanoid } from 'nanoid';
 
 export default class Header extends Component {
+
+  // props 限制
+  static propTypes = {
+    addItem: PropTypes.func.isRequired
+  }
+
+
+
   addNewItem = (e) => {
     let { addItem } = this.props
 
