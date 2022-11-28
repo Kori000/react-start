@@ -5,6 +5,8 @@ export default class Item extends Component {
   state = {
     mouse: false
   }
+
+
   mouseHandle = (flag) => {
     return () => {
       this.setState({
@@ -12,8 +14,15 @@ export default class Item extends Component {
       })
     }
   }
+  checkChange = (id) => {
+    return (e) => {
+      const { updateDone } = this.props
+
+      updateDone(id, e.target.checked)
+    }
+  }
   render () {
-    const { name, done } = this.props
+    const { name, done, id } = this.props
     const { mouse } = this.state
     return (
       <li
@@ -22,7 +31,7 @@ export default class Item extends Component {
         style={{ background: mouse ? '#ddd' : '#fff' }}
       >
         <label>
-          <input type="checkbox" defaultChecked={done} />
+          <input type="checkbox" defaultChecked={done} onChange={this.checkChange(id)} />
           <span>{name}</span>
         </label>
         <button className="btn btn-danger" style={{ display: mouse ? 'block' : 'none' }}>
