@@ -34,13 +34,24 @@ class App extends Component {
     })
   }
 
+  // 删除
+  removeItem = (id) => {
+    const { todos } = this.state
+    const newTodos = todos.filter(i => {
+      return i.id !== id
+    })
+    this.setState({
+      todos: newTodos
+    })
+  }
+
   render () {
     const { todos } = this.state
     return (
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addItem={this.addItem} ></Header>
-          <List todos={todos} updateDone={this.updateDone} ></List>
+          <List todos={todos} updateDone={this.updateDone} removeItem={this.removeItem} ></List>
           <Footer></Footer>
         </div>
       </div>

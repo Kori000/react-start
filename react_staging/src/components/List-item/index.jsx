@@ -15,13 +15,20 @@ export default class Item extends Component {
       })
     }
   }
+
   checkChange = (id) => {
     return (e) => {
       const { updateDone } = this.props
-
       updateDone(id, e.target.checked)
     }
   }
+
+  removeTodo = (id) => {
+    return () => {
+      this.props.removeItem(id)
+    }
+  }
+
   render () {
     const { name, done, id } = this.props
     const { mouse } = this.state
@@ -35,7 +42,7 @@ export default class Item extends Component {
           <input type="checkbox" defaultChecked={done} onChange={this.checkChange(id)} />
           <span>{name}</span>
         </label>
-        <button className="btn btn-danger" style={{ display: mouse ? 'block' : 'none' }}>
+        <button className="btn btn-danger" onClick={this.removeTodo(id)} style={{ display: mouse ? 'block' : 'none' }}>
           删除
         </button>
       </li >
