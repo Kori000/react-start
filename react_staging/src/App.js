@@ -7,7 +7,7 @@ class App extends Component {
 
   getStudentData = () => {
     axios.get('http://127.0.0.1:3000/students').then(
-      response => { console.log(response) },
+      response => { console.log(response.data) },
       err => {
         console.log(err)
       }
