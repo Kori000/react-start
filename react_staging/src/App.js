@@ -5,24 +5,26 @@ import List from './components/List';
 export default class App extends Component {
 
   state = {
-    users: []
+    users: [],
+    isFirst: true,
+    isLoading: true,
+    err: ''
   }
 
-  getUserList = (listData) => {
-    console.log(listData)
-    this.setState({
-      users: listData
-    })
+
+
+  updateState = (update) => {
+
+    this.setState(update)
   }
 
   render () {
 
-    const { users } = this.state
 
     return (
       <div className="container">
-        <Search getUserList={this.getUserList} />
-        <List users={users} />
+        <Search updateState={this.updateState} />
+        <List {...this.state} />
       </div>
     )
   }

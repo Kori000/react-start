@@ -5,11 +5,28 @@ export default class Header extends Component {
 
   search = async () => {
     const { keyWordElement: { value: keyWord } } = this
-    const { getUserList } = this.props
+    const { updateState } = this.props
 
-    const { data: res } = await axios.get(`https://api.github.com/search/users?q=${keyWord}`)
-    getUserList(res.items)
+    updateState({
+      isFirst: false,
+      isLoading: true
+    })
+    try {
+      const { data: res } = await axios.get(`https://api.github.com/search/users?q=${keyWord}`)
 
+      updateState({
+        users: res.items,
+        isLoading: false
+
+      })
+
+    } catch (error) {
+      updateState({
+        err: error.message,
+        isLoading: false
+
+      })
+    }
   }
   render () {
     return (
