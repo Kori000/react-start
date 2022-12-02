@@ -14,11 +14,11 @@ export default class About extends Component {
 
   render () {
     const { title } = this.state
-    const { search } = this.props.location
-    let newObj = qs.parse(search.slice(1))
+    const { id } = this.props.location.state || {}
     let resObj = title.find(i => {
-      return i.id === newObj.id
+      return i.id === id || 1
     })
+    console.log(resObj)
 
     return (
       <ul>

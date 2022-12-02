@@ -20,7 +20,7 @@ export default class About extends Component {
             title.map(i => {
               return (
                 <li key={i.id}>
-                  <Link to={`/home/message/detail/?id=${i.id}`} >{i.title}</Link>
+                  <Link to={{ pathname: '/home/message/detail', state: { id: 1 } }} >{i.title}</Link>
                 </li>
               )
             })
@@ -28,7 +28,7 @@ export default class About extends Component {
         </ul>
 
         {/* Search */}
-        <Route path="/home/message/detail/" component={Detail} />
+        <Route path="/home/message/detail" component={Detail} />
       </div>
 
     )
