@@ -20,14 +20,15 @@ export default class About extends Component {
             title.map(i => {
               return (
                 <li key={i.id}>
-                  <Link to={`/home/message/detail/${i.id}`} >{i.title}</Link>
+                  <Link to={`/home/message/detail/?id=${i.id}`} >{i.title}</Link>
                 </li>
               )
             })
           }
         </ul>
-        <Route path="/home/message/detail/:id" component={Detail} />
-        <Redirect to='/home/message/detail/2' />
+
+        {/* Search */}
+        <Route path="/home/message/detail/" component={Detail} />
       </div>
 
     )

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import qs from 'qs';
+
 export default class About extends Component {
 
   state = {
@@ -12,11 +14,12 @@ export default class About extends Component {
 
   render () {
     const { title } = this.state
-    const { id } = this.props.match.params
-    let resObj = title.find(res => {
-      return res.id === id
+    const { search } = this.props.location
+    let newObj = qs.parse(search.slice(1))
+    let resObj = title.find(i => {
+      return i.id === newObj.id
     })
-    console.log(resObj)
+
     return (
       <ul>
         <li>
