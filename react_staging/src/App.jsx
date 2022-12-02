@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
-import { Link, Route, NavLink } from 'react-router-dom';
+import { Link, Route, NavLink, Switch } from 'react-router-dom';
 import About from './components/About';
+import About2 from './components/About2';
 import Home from './components/Home';
 import MyNavLink from './components/MyNavLink';
 
@@ -41,8 +42,12 @@ export default class App extends Component {
           <div className="col-xs-6">
             <div className="panel">
               <div className="panel-body">
-                <Route path="/about" component={About}></Route>
-                <Route path="/home" component={Home}></Route>
+                <Switch>
+                  <Route path="/about" component={About}></Route>
+                  <Route path="/about" component={About2}></Route>
+                  <Route path="/home" component={Home}></Route>
+                </Switch>
+
               </div>
             </div>
           </div>
