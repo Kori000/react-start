@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './App.css'
-import { Link, Route, } from 'react-router-dom';
+import { Link, Route, NavLink } from 'react-router-dom';
 import About from './components/About';
 import Home from './components/Home';
+import MyNavLink from './components/MyNavLink';
 
 
 export default class App extends Component {
@@ -33,15 +34,14 @@ export default class App extends Component {
             <div className="list-group">
               {/* <a className="list-group-item" href="./about.html">About</a>
               <a className="list-group-item active" href="./home.html">Home</a> */}
-              <Link className="list-group-item" to="/about" >About</Link>
-              <Link className="list-group-item" to="/home" >Home</Link>
-
+              <MyNavLink to="/about">About</MyNavLink>
+              <MyNavLink to="/home">Home</MyNavLink>
             </div>
           </div>
           <div className="col-xs-6">
             <div className="panel">
               <div className="panel-body">
-                <Route path="/about" component={About} ></Route>
+                <Route path="/about" component={About}></Route>
                 <Route path="/home" component={Home}></Route>
               </div>
             </div>
