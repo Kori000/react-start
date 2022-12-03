@@ -5,7 +5,7 @@ import { Button, Space, Select, Card } from 'antd';
 export default class Cout extends Component {
 
   state = {
-    add: 0,
+    add: 1,
     selectOptions: [
       {
         value: 1,
@@ -61,13 +61,13 @@ export default class Cout extends Component {
 
     console.log(this.props)
 
-    const { selectOptions } = this.state
+    const { add, selectOptions } = this.state
     const { kx } = this.props
     return (
 
       <div className='container'>
         <Select
-          defaultValue="0"
+          defaultValue={add}
           style={{
             width: 120,
           }}
