@@ -11,7 +11,7 @@ export default function countReducer (preState = initState, action) {
     case DECREMENT:
       return preState - data
     default:
-      return 0
+      return 999
   }
 
 

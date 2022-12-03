@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './index.css'
 import { Button, Space, Select, Card } from 'antd';
 
-export default class App extends Component {
+export default class Cout extends Component {
 
   state = {
     add: 0,
@@ -33,19 +33,23 @@ export default class App extends Component {
   };
   increment = () => {
     const { add } = this.state
-
+    this.props.jia(add)
   }
   decrement = () => {
     const { add } = this.state
+    this.props.jian(add)
   }
   incrementIfOdd = () => {
     const { add } = this.state
-
+    if (this.props.kx % 2 !== 0) {
+      this.props.jia(add)
+    }
 
   }
   incrementAsync = () => {
     setTimeout(() => {
       const { add } = this.state
+      this.props.jia(add)
     }, 1000);
   }
 
@@ -54,7 +58,11 @@ export default class App extends Component {
   }
 
   render () {
-    const { count, add, selectOptions } = this.state
+
+    console.log(this.props)
+
+    const { selectOptions } = this.state
+    const { kx } = this.props
     return (
 
       <div className='container'>
@@ -74,7 +82,7 @@ export default class App extends Component {
             width: 900,
           }}
         >
-          <p>???</p>
+          <p>{kx}</p>
           <Space>
             <Button onClick={this.increment}>+</Button>
             <Button onClick={this.decrement}>-</Button>
