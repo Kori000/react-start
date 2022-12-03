@@ -8,17 +8,11 @@ import {
 } from '../../redux/count_action';
 
 
-
-function mapStateToProps (state, store) {
-  return { kx: state }
-}
-function mapDispatchToProps (dispatch, store) {
-  return {
-    jia: data => dispatch(createIncrementAction(data)),
-    jian: data => dispatch(createDecrementAction(data)),
-
+export default connect(
+  state => ({ kx: state }),
+  // 终极简写 API 层面的优化
+  {
+    jia: createIncrementAction,
+    jian: createDecrementAction
   }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(CountUI)
+)(CountUI)
