@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 
 
 export default function Message () {
+
+  const navigate = useNavigate()
 
   const [list, setList] = React.useState(
     [
@@ -12,7 +14,16 @@ export default function Message () {
     ]
   )
 
-
+  function goToDeatail (i) {
+    navigate('detail', {
+      replace: false,
+      state: {
+        id: i.id,
+        title: i.title,
+        kx: i.value,
+      }
+    })
+  }
 
   return (
     <>
@@ -24,7 +35,12 @@ export default function Message () {
                 <NavLink to={`detail?id=${i.id}&title=${i.title}&kx=${i.value}`} >
                   {i.title}
                 </NavLink>
+                <button onClick={() => goToDeatail(i)} >编程式跳转</button>
+                <button onClick={() => navigate(-1)} >后退</button>
+                <button onClick={() => navigate(1)} >前进</button>
+
               </li>
+
             )
           })
         }
