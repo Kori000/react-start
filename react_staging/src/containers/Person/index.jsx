@@ -1,9 +1,8 @@
 // 引入 connect 用于连接 redux 与 UI 组件
 import { connect } from 'react-redux'
 import {
-  createIncrementAction,
-  createDecrementAction
-} from '../../redux/actions/count'
+  createAddPersonAction
+} from '../../redux/actions/person'
 
 import React, { Component } from 'react'
 import css from './index.module.css'
@@ -11,29 +10,26 @@ import css from './index.module.css'
 import {
   Button,
   Space,
-  Select,
   Card,
   Input,
   Form,
-  Checkbox,
   Divider,
   List,
-  Typography
 } from 'antd'
 
 class Person extends Component {
   state = {
-    list: [
-      { name: 'kx', age: 20 }
-    ]
+
   }
   onFinish = (values) => {
-    console.log('Success:', values)
+    const { add_person } = this.props
+    add_person(values)
   }
 
   render () {
+    console.log(this.props)
     const { onFinish } = this
-    const { list } = this.state
+    const { list, count } = this.props
     return (
       <div className={css.container}>
         <Card
@@ -44,6 +40,7 @@ class Person extends Component {
             height: 1000
           }}
         >
+          <div>{count}</div>
           <Space>
             <Form
               name="basic"
@@ -86,17 +83,6 @@ class Person extends Component {
               </Form.Item>
 
               <Form.Item
-                name="remember"
-                valuePropName="checked"
-                wrapperCol={{
-                  offset: 8,
-                  span: 16
-                }}
-              >
-                <Checkbox>Remember me</Checkbox>
-              </Form.Item>
-
-              <Form.Item
                 wrapperCol={{
                   offset: 8,
                   span: 16
@@ -126,10 +112,9 @@ class Person extends Component {
 }
 
 export default connect(
-  (state) => ({ kx: state }),
+  (state) => ({ list: state.person, count: state.count }),
   // 终极简写 API 层面的优化
   {
-    jia: createIncrementAction,
-    jian: createDecrementAction
+    add_person: createAddPersonAction
   }
 )(Person)

@@ -1,10 +1,15 @@
-import { legacy_createStore as createStore } from 'redux';
+import { combineReducers, legacy_createStore as createStore } from 'redux';
+
 
 import countReducer from './reducers/count';
+import personReducer from './reducers/person';
+
+const allRedecers = combineReducers({
+  count: countReducer,
+  person: personReducer
+})
 
 
-
-
-export default createStore(countReducer)
+export default createStore(allRedecers)
 
 

@@ -8,8 +8,8 @@ import {
 import React, { Component } from 'react'
 import './index.css'
 
-import { Button, Space, Select, Card } from 'antd';
-
+import { Button, Space, Select, Card, Typography } from 'antd';
+const { Title } = Typography;
 
 class Count extends Component {
 
@@ -64,7 +64,7 @@ class Count extends Component {
   render () {
     console.log(this.props)
     const { add, selectOptions } = this.state
-    const { kx } = this.props
+    const { kx, list_count } = this.props
     return (
       <div className='container'>
         <Select
@@ -91,6 +91,7 @@ class Count extends Component {
             <Button onClick={this.incrementIfOdd}>当前值为奇数时+</Button>
             <Button onClick={this.incrementAsync}>异步+</Button>
           </Space>
+          <Title>下方总人数和为{list_count}</Title>
         </Card>
       </div>
     )
@@ -100,7 +101,7 @@ class Count extends Component {
 
 
 export default connect(
-  state => ({ kx: state }),
+  state => ({ kx: state.count, list_count: state.person.length * 100 }),
   // 终极简写 API 层面的优化
   {
     jia: createIncrementAction,
