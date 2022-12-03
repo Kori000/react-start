@@ -1,8 +1,8 @@
 import { ADD_PERSON } from '../constant';
 
-const createAddPersonAction = personObj => ({ type: ADD_PERSON, data: personObj })
+const addPerson = personObj => ({ type: ADD_PERSON, data: personObj })
 
 
 export {
-  createAddPersonAction
+  addPerson
 }

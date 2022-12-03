@@ -1,7 +1,7 @@
 // 引入 connect 用于连接 redux 与 UI 组件
 import { connect } from 'react-redux'
 import {
-  createAddPersonAction
+  addPerson
 } from '../../redux/actions/person'
 
 import React, { Component } from 'react'
@@ -22,8 +22,8 @@ class Person extends Component {
 
   }
   onFinish = (values) => {
-    const { add_person } = this.props
-    add_person(values)
+    const { addPerson } = this.props
+    addPerson(values)
   }
 
   render () {
@@ -115,6 +115,6 @@ export default connect(
   (state) => ({ list: state.person, count: state.count }),
   // 终极简写 API 层面的优化
   {
-    add_person: createAddPersonAction
+    addPerson
   }
 )(Person)

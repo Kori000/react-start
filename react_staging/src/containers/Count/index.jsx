@@ -1,8 +1,8 @@
 // 引入 connect 用于连接 redux 与 UI 组件
 import { connect } from 'react-redux'
 import {
-  createIncrementAction,
-  createDecrementAction
+  increment,
+  decrement
 } from '../../redux/actions/count';
 
 import React, { Component } from 'react'
@@ -42,23 +42,23 @@ class Count extends Component {
   };
   increment = () => {
     const { add } = this.state
-    this.props.jia(add)
+    this.props.increment(add)
   }
   decrement = () => {
     const { add } = this.state
-    this.props.jian(add)
+    this.props.decrement(add)
   }
   incrementIfOdd = () => {
     const { add } = this.state
     if (this.props.kx % 2 !== 0) {
-      this.props.jia(add)
+      this.props.increment(add)
     }
 
   }
   incrementAsync = () => {
     setTimeout(() => {
       const { add } = this.state
-      this.props.jia(add)
+      this.props.increment(add)
     }, 1000);
   }
   render () {
@@ -104,7 +104,7 @@ export default connect(
   state => ({ kx: state.count, list_count: state.person.length * 100 }),
   // 终极简写 API 层面的优化
   {
-    jia: createIncrementAction,
-    jian: createDecrementAction
+    increment,
+    decrement
   }
 )(Count)

@@ -3,11 +3,11 @@ import { INCREMENT, DECREMENT } from '../constant';
 
 
 
-const createIncrementAction = data => ({ type: INCREMENT, data })
-const createDecrementAction = data => ({ type: DECREMENT, data })
+const increment = data => ({ type: INCREMENT, data })
+const decrement = data => ({ type: DECREMENT, data })
 
 
 export {
-  createIncrementAction,
-  createDecrementAction
+  increment,
+  decrement
 }
