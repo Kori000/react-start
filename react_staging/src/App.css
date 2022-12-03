@@ -1,4 +1,16 @@
-.list-group-item.active{
-  background-color: #2b4b !important;
-  border: 1px solid #2b4b !important;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  display: flex;
+  height: 100vh;
+  background-color: #000;
+}
+.container{
+  display: flex;
+  justify-content: center;
+    height: 100vh;
+  background-color: #000;
 }
