@@ -20,7 +20,7 @@ const routes = [
         element: <Message />,
         children: [
           {
-            path: 'detail/:id/:title/:value',
+            path: 'detail',
             element: <Deatil />
           }
         ]
