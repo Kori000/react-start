@@ -2,6 +2,7 @@ import About from '../components/About';
 import Home from '../components/Home';
 import News from '../components/News';
 import Message from '../components/Message';
+import Deatil from '../components/Detail';
 import { Navigate } from 'react-router-dom';
 
 
@@ -16,7 +17,13 @@ const routes = [
       },
       {
         path: 'message',
-        element: <Message />
+        element: <Message />,
+        children: [
+          {
+            path: 'detail/:id/:title/:value',
+            element: <Deatil />
+          }
+        ]
       },
 
     ]
