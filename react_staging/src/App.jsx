@@ -3,7 +3,7 @@ import './App.css'
 import { Button, Space, Select, Card } from 'antd';
 
 import store from './redux/store';
-
+import { createIncrementAction, createDecrementAction } from './redux/count_action';
 
 export default class App extends Component {
 
@@ -36,24 +36,24 @@ export default class App extends Component {
   };
   increment = () => {
     const { add } = this.state
-    store.dispatch({ type: 'increment', data: add })
+    store.dispatch(createIncrementAction(add))
 
   }
   decrement = () => {
     const { add } = this.state
-    store.dispatch({ type: 'dncrement', data: add })
+    store.dispatch(createDecrementAction(add))
   }
   incrementIfOdd = () => {
     const { add } = this.state
     if (store.getState() % 2 !== 0) {
-      store.dispatch({ type: 'increment', data: add })
+      store.dispatch(createIncrementAction(add))
     }
 
   }
   incrementAsync = () => {
     setTimeout(() => {
       const { add } = this.state
-      store.dispatch({ type: 'increment', data: add })
+      store.dispatch(createIncrementAction(add))
     }, 1000);
   }
 
