@@ -20,7 +20,9 @@ export default class App extends Component {
         <div className="row">
           <div className="col-xs-2 col-xs-offset-2">
             <div className="list-group">
-              <NavLink className="list-group-item" to="/about" >About</NavLink>
+              <NavLink className={({ isActive }) => {
+                return isActive ? 'list-group-item active' : 'list-group-item'
+              }} to="/about" >About</NavLink>
               <NavLink className="list-group-item" to="/home" >Home</NavLink>
             </div>
           </div>
