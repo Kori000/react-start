@@ -6,7 +6,7 @@ export default class Demo2 extends Component {
 
 
   state = {
-    count: 0
+    count: 0,
   }
 
   add = () => {
@@ -28,6 +28,10 @@ export default class Demo2 extends Component {
   }
 
 
+  show = () => {
+    alert(this.inpValue.value)
+  }
+
 
 
   render () {
@@ -37,6 +41,9 @@ export default class Demo2 extends Component {
         <h1>{count}</h1>
         <button onClick={this.add} >+1</button>
         <button onClick={this.unMounted} >卸载</button>
+        <input type="text" ref={c => this.inpValue = c} />
+        <button onClick={this.show} >展示内容</button>
+
       </div>
     )
   }

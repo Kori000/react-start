@@ -11,9 +11,6 @@ function Demo () {
     let a = 1
     let timer = setInterval(() => {
       a += 1
-      if (a > 3) {
-        unMounted()
-      }
       add()
       console.log(a)
     }, 1000)
@@ -42,11 +39,22 @@ function Demo () {
     root.unmount()
   }
 
+  const inpRef = React.useRef()
+
+
+  function show () {
+    alert(inpRef.current.value)
+  }
+
   return (
     <div>
       <h1>{count}</h1>
       <button onClick={add} >+1</button>
       <button onClick={unMounted} >卸载</button>
+
+      <input type="text" ref={inpRef} />
+      <button onClick={show} >展示内容</button>
+
     </div>
   )
 }
