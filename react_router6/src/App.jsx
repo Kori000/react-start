@@ -1,47 +1,36 @@
-import React, { Component } from 'react'
-import { NavLink, Routes, Route, Navigate } from 'react-router-dom';
-import About from './components/About';
-import Home from './components/Home';
-import Demo from './components/Demo';
+import React from 'react'
+import { NavLink, useRoutes } from 'react-router-dom';
+import routes from './routes/index';
 
 
+export default function App () {
 
-export default class App extends Component {
+  const element = useRoutes(routes)
 
-
-  render () {
-    return (
-      <div>
-        <div className="row">
-          <div className="col-xs-offset-2 col-xs-8">
-            <div className="page-header"><h2>React Router Demo</h2></div>
+  return (
+    <div>
+      <div className="row">
+        <div className="col-xs-offset-2 col-xs-8">
+          <div className="page-header"><h2>React Router Demo</h2></div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-xs-2 col-xs-offset-2">
+          <div className="list-group">
+            <NavLink className={({ isActive }) => {
+              return isActive ? 'list-group-item active' : 'list-group-item'
+            }} to="/about" >About</NavLink>
+            <NavLink className="list-group-item" to="/home" >Home</NavLink>
           </div>
         </div>
-        <div className="row">
-          <div className="col-xs-2 col-xs-offset-2">
-            <div className="list-group">
-              <NavLink className={({ isActive }) => {
-                return isActive ? 'list-group-item active' : 'list-group-item'
-              }} to="/about" >About</NavLink>
-              <NavLink className="list-group-item" to="/home" >Home</NavLink>
+        <div className="col-xs-6">
+          <div className="panel">
+            <div className="panel-body">
+              {element}
             </div>
           </div>
-          <div className="col-xs-6">
-            <div className="panel">
-              <div className="panel-body">
-                <Routes>
-                  <Route path='/about' element={<About />}  ></Route>
-                  {/* 路径相同只会去往匹配到的第一个 */}
-                  <Route path='/about' element={<Demo />}  ></Route>
-                  <Route path='/home' element={<Home />} ></Route>
-                  {/* 重定向 */}
-                  <Route path='/' element={<Navigate to="/home" />} ></Route>
-                </Routes>
-              </div>
-            </div>
-          </div>
-        </div >
+        </div>
       </div >
-    )
-  }
+    </div >
+  )
 }
