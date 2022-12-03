@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { NavLink, Routes, Route } from 'react-router-dom';
+import { NavLink, Routes, Route, Navigate } from 'react-router-dom';
 import About from './components/About';
 import Home from './components/Home';
+import Demo from './components/Demo';
 
 
 
@@ -27,8 +28,12 @@ export default class App extends Component {
             <div className="panel">
               <div className="panel-body">
                 <Routes>
-                  <Route path='/about' element={<About />}  >About</Route>
-                  <Route path='/home' element={<Home />} >Home</Route>
+                  <Route path='/about' element={<About />}  ></Route>
+                  {/* 路径相同只会去往匹配到的第一个 */}
+                  <Route path='/about' element={<Demo />}  ></Route>
+                  <Route path='/home' element={<Home />} ></Route>
+                  {/* 重定向 */}
+                  <Route path='/' element={<Navigate to="/home" />} ></Route>
                 </Routes>
               </div>
             </div>
