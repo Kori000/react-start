@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
   createIncrementAction,
   createDecrementAction
-} from '../../redux/count_action';
+} from '../../redux/actions/count';
 
 import React, { Component } from 'react'
 import './index.css'
@@ -81,6 +81,7 @@ class Count extends Component {
           title="Count"
           style={{
             width: 900,
+            height: 400
           }}
         >
           <p>{kx}</p>

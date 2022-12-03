@@ -1,16 +1,11 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 body{
   display: flex;
-  height: 50vh;
   background-color: #000;
+  justify-content: center;
 }
 .container{
+  margin-left: 120px;
   display: flex;
   justify-content: center;
-    height: 50vh;
   background-color: #000;
 }
