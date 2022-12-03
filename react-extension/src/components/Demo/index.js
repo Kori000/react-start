@@ -1,36 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Demo extends Component {
+export default function Demo () {
 
-  state = {
-    count: 0
-  }
+  const [count, setState] = React.useState(0)
 
-  addNum = () => {
-    // 对象式 (语法糖)
-    // this.setState({
-    //   count: this.state.count + 1
-    // }, () => {
-    //   console.log(this.state.count)
-    // }
-    // )
-
-    // 函数式
-    this.setState((state, props) => {
-      return ({ count: state.count + 2 })
-    }, () => {
-      console.log(this.state.count)
-    })
+  function add () {
+    // setState(count + 1)  // 第一种写法
+    setState(count => count + 1) // 第二种写法
 
   }
 
-  render () {
-    const { count } = this.state
-    return (
-      <div>
-        <h1>当前求和为: {count}</h1>
-        <button onClick={this.addNum} >+1</button>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={add} >+1</button>
+    </div>
+  )
 }
