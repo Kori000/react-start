@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import './App.css'
 import { Button, Space, Select, Card } from 'antd';
 
-
+import store from './redux/store';
 
 
 export default class App extends Component {
 
   state = {
-    count: 0,
     add: 0,
     selectOptions: [
       {
@@ -36,41 +35,38 @@ export default class App extends Component {
     })
   };
   increment = () => {
-    const { count, add } = this.state
-    this.setState({
-      count: count + add
-    })
+    const { add } = this.state
+    store.dispatch({ type: 'increment', data: add })
+
   }
   decrement = () => {
-    const { count, add } = this.state
-    this.setState({
-      count: count - add
-    })
+    const { add } = this.state
+    store.dispatch({ type: 'dncrement', data: add })
   }
   incrementIfOdd = () => {
-    const { count, add } = this.state
-    if (count % 2 !== 0) {
-      this.setState({
-        count: count + add
-      })
+    const { add } = this.state
+    if (store.getState() % 2 !== 0) {
+      store.dispatch({ type: 'increment', data: add })
     }
 
   }
   incrementAsync = () => {
     setTimeout(() => {
-      const { count, add } = this.state
-      this.setState({
-        count: count + add
-      })
+      const { add } = this.state
+      store.dispatch({ type: 'increment', data: add })
     }, 1000);
   }
 
-
+  componentDidMount () {
+    store.subscribe(() => {
+      this.forceUpdate()
+    })
+  }
 
   render () {
-
+    console.log(store)
     const { count, add, selectOptions } = this.state
-
+    const countState = store.getState()
     return (
 
       <div className='container'>
@@ -90,7 +86,7 @@ export default class App extends Component {
             width: 900,
           }}
         >
-          <p>{count}</p>
+          <p>{countState}</p>
           <Space>
             <Button onClick={this.increment}>+</Button>
             <Button onClick={this.decrement}>-</Button>
